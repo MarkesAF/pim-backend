@@ -40,6 +40,11 @@ public class FuncionarioController {
         return ResponseEntity.ok().body(fun);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }

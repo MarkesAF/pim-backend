@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,9 @@ public class FuncionarioService {
     public void updateData(Funcionario fun, Funcionario obj){
         fun.setCargo(obj.getCargo());
         fun.setSalarioBase(obj.getSalarioBase());
+    }
+    public void delete(Long id){
+      rep.deleteById(id);
     }
 
 }
