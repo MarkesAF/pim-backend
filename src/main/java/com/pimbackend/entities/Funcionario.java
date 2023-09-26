@@ -12,6 +12,7 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idfuncionario")
     private Long id;
 
     @Column(name = "nmfuncionario")
@@ -76,7 +77,7 @@ public class Funcionario {
         this.dtContratacao = dtContratacao;
     }
 
-    public Double getVlSalarioBase() {
+    public Double getSalarioBase() {
         return salarioBase;
     }
 
