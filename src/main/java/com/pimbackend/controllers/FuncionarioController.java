@@ -1,5 +1,6 @@
 package com.pimbackend.controllers;
 
+import com.pimbackend.entities.FolhaPagamento;
 import com.pimbackend.entities.Funcionario;
 import com.pimbackend.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/funcionarios")
@@ -45,6 +47,5 @@ public class FuncionarioController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

@@ -26,7 +26,7 @@ public class FolhaPagamentoController {
         return ResponseEntity.ok().body(list);
     }
     @GetMapping("{id}")
-    public ResponseEntity<FolhaPagamento> findById(@PathVariable Long id){
+    public ResponseEntity<FolhaPagamento> findById(Funcionario fun, @PathVariable Long id){
         FolhaPagamento obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
