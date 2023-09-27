@@ -18,11 +18,6 @@ public class FolhaPagamento {
     @Column(name = "idfolhapagamento")
     private Long id;
 
-    @MapsId("idfuncionario")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idfuncionario", referencedColumnName = "idfuncionario")
-    private Funcionario funcionario;
-
     @Column(name = "dtreferencia")
     private LocalDate dtReferencia;
 
@@ -39,10 +34,16 @@ public class FolhaPagamento {
     private Double vlBonus;
 
 
+    @MapsId("idfuncionario")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idfuncionario", referencedColumnName = "idfuncionario")
+    private Funcionario funcionario;
+
     public FolhaPagamento(){
     }
-    public FolhaPagamento(Long id,LocalDate dtReferencia, Double vlBase, Double vlDescontos, Double vlBonus ){
+    public FolhaPagamento(Long id,Funcionario fun,LocalDate dtReferencia, Double vlBase, Double vlDescontos, Double vlBonus ){
         this.id = id;
+        fun.getId();
         this.dtReferencia = dtReferencia;
         this.vlBase = vlBase;
         this.vlDescontos = vlDescontos;
@@ -89,5 +90,8 @@ public class FolhaPagamento {
 
     public Funcionario getFuncionario() {
         return funcionario;
+    }
+    public void setFuncionario(Funcionario funcionario){
+        funcionario.setId(funcionario.getId());
     }
 }
