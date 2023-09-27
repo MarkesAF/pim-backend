@@ -30,6 +30,9 @@ public class Funcionario {
     @Column(name = "vlsalariobase")
     private Double salarioBase;
 
+    @OneToOne(mappedBy = "funcionario")
+    private FolhaPagamento folhaPagamento;
+
     public Funcionario(){
     }
     public Funcionario(Long id, String nome, String cpf, String cargo, LocalDate dtContratacao, Double salarioBase){
@@ -40,6 +43,7 @@ public class Funcionario {
         this.salarioBase = salarioBase;
     }
 
+    @OneToMany
     public Long getId() {
         return id;
     }
@@ -89,11 +93,11 @@ public class Funcionario {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Funcionario that)) return false;
-        return Objects.equals(id, that.id);
+        return Objects.equals(cpf, that.cpf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(cpf);
     }
 }
