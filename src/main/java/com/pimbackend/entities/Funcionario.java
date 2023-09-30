@@ -2,48 +2,37 @@ package com.pimbackend.entities;
 
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
 
 
 @Entity
-@Table(name = "tbfuncionario", schema = "pim")
+@EqualsAndHashCode(of = "id")
+@Table(name = "tbfuncionario", schema = "Oasis")
 public class Funcionario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idfuncionario")
     private Long id;
-
-    @Column(name = "nmfuncionario")
     private String nome;
-
-    @Column(name = "cpffuncionario")
+    @Column(unique = true, nullable = false)
     private String cpf;
-
-    @Column(name = "cargofuncionario")
+    @Column(nullable = false)
     private String cargo;
+    private Double salario;
 
-    @Column(name = "dtcontratacao")
-    private LocalDate dtContratacao;
 
-    @Column(name = "vlsalariobase")
-    private Double salarioBase;
-
-    @OneToOne(mappedBy = "funcionario")
-    private FolhaPagamento folhaPagamento;
 
     public Funcionario(){
     }
-    public Funcionario(Long id, String nome, String cpf, String cargo, LocalDate dtContratacao, Double salarioBase){
+    public Funcionario(Long id){
+        this.id = id;
+    }
+    public Funcionario(Long id, String nome, String cpf, String cargo, Double salario){
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
-        this.dtContratacao = dtContratacao;
-        this.salarioBase = salarioBase;
+        this.salario = salario;
     }
 
-    @OneToMany
     public Long getId() {
         return id;
     }
@@ -51,12 +40,15 @@ public class Funcionario {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getCpf() {
         return cpf;
     }
@@ -73,31 +65,13 @@ public class Funcionario {
         this.cargo = cargo;
     }
 
-    public LocalDate getDtContratacao() {
-        return dtContratacao;
+    public Double getSalario() {
+        return salario;
     }
 
-    public void setDtContratacao(LocalDate dtContratacao) {
-        this.dtContratacao = dtContratacao;
+    public void setSalario(Double salario) {
+        this.salario = salario;
     }
 
-    public Double getSalarioBase() {
-        return salarioBase;
-    }
 
-    public void setSalarioBase(Double salarioBase) {
-        this.salarioBase = salarioBase;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Funcionario that)) return false;
-        return Objects.equals(cpf, that.cpf);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cpf);
-    }
 }

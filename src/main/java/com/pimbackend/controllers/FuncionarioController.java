@@ -30,13 +30,13 @@ public class FuncionarioController {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PostMapping
+    @PostMapping("{cadastrar}")
     public ResponseEntity<Funcionario> insert(@RequestBody Funcionario funcionario){
         Funcionario obj = service.insert(funcionario);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
-    @PutMapping(value = "{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Funcionario> update(@PathVariable Long id, Funcionario obj){
         Funcionario fun = service.update(id,obj);
         return ResponseEntity.ok().body(fun);
@@ -47,5 +47,6 @@ public class FuncionarioController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 
 }
