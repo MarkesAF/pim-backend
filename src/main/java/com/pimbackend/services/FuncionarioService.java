@@ -1,6 +1,7 @@
 package com.pimbackend.services;
 
 
+import com.pimbackend.dto.FuncionarioDTO;
 import com.pimbackend.entities.Funcionario;
 import com.pimbackend.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,12 +20,17 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository rep;
 
-    public List<Funcionario> getFuncionarios(){
-        return rep.findAll();
-    }
-    public Funcionario findById(Long id){
-        Optional<Funcionario> obj = rep.findById(id);
-        return obj.get();
+    public List<FuncionarioDTO> getFuncionarios(){
+        List<Funcionario> list = rep.findAll();
+        List<FuncionarioDTO> dto = new ArrayList<>();
+        for(Funcionario fun : list){
+            dto.add(new FuncionarioDTO(
+                    fun.getId(),
+                    fun.getNome(),
+                    fun.getCargo()
+            ));
+        }
+        return dto;
     }
     public Funcionario insert(Funcionario funcionario){
         return rep.save(funcionario);

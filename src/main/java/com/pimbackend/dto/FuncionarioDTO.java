@@ -1,4 +1,7 @@
 package com.pimbackend.dto;
 
-public record FuncionarioDTO(Long id, String nome, String cargo) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record FuncionarioDTO(@NotBlank @NotNull Long id, String nome, String cargo) {
     }

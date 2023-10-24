@@ -13,18 +13,14 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 11)
     private String cpf;
     @Column(nullable = false)
     private String cargo;
     private Double salario;
 
 
-
     public Funcionario(){
-    }
-    public Funcionario(Long id){
-        this.id = id;
     }
     public Funcionario(Long id, String nome, String cpf, String cargo, Double salario){
         this.id = id;
