@@ -1,6 +1,7 @@
 package com.pimbackend.entities;
 
 
+import com.pimbackend.dto.FuncionarioDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 
@@ -9,8 +10,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "id")
 @Table(name = "tbfuncionario", schema = "Oasis")
 public class Funcionario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     @Column(unique = true, nullable = false, length = 11)
@@ -68,6 +69,5 @@ public class Funcionario {
     public void setSalario(Double salario) {
         this.salario = salario;
     }
-
 
 }
