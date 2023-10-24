@@ -1,6 +1,7 @@
 package com.pimbackend.services;
 
 
+import com.pimbackend.dto.FolhaPagamentoDTO;
 import com.pimbackend.entities.FolhaPagamento;
 import com.pimbackend.repository.FolhaPagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,9 +19,21 @@ public class FolhaPagamentoService {
     @Autowired
     private FolhaPagamentoRepository rep;
 
-    public List<FolhaPagamento> findAll(){
+    public List<FolhaPagamentoDTO> findAll(){
         List<FolhaPagamento> list = rep.findAll();
-        return list;
+        List<FolhaPagamentoDTO> dto = new ArrayList<>();
+        for(FolhaPagamento fp : list){
+            dto.add(new FolhaPagamentoDTO(
+                    fp.getId(),
+                    fp.getFuncionario().getId(),
+                    fp.getFuncionario().getNome(),
+                    fp.getFuncionario().getCargo(),
+                    fp.getSalario(),
+                    fp.getBonus(),
+                    fp.getDescontos()
+            ));
+        }
+        return dto;
     }
     public FolhaPagamento findById(@PathVariable Long id){
        return rep.findById(id).get();

@@ -1,5 +1,6 @@
 package com.pimbackend.controllers;
 
+import com.pimbackend.dto.FolhaPagamentoDTO;
 import com.pimbackend.entities.FolhaPagamento;
 import com.pimbackend.services.FolhaPagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class FolhaPagamentoController {
     private FolhaPagamentoService service;
 
     @GetMapping
-    public ResponseEntity<List<FolhaPagamento>>findAll(){
-        List<FolhaPagamento> list = service.findAll();
+    public ResponseEntity<List<FolhaPagamentoDTO>>findAll(){
+        List<FolhaPagamentoDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
     @GetMapping("{id}")
