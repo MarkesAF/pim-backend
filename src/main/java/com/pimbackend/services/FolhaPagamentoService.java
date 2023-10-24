@@ -35,9 +35,6 @@ public class FolhaPagamentoService {
         }
         return dto;
     }
-    public FolhaPagamento findById(@PathVariable Long id){
-       return rep.findById(id).get();
-    }
     public FolhaPagamento insert(FolhaPagamento fp){
         return rep.save(fp);
     }

@@ -35,13 +35,11 @@ public class FuncionarioService {
         return rep.save(funcionario);
     }
 
-
     public Funcionario update(@PathVariable Long id, @RequestBody Funcionario obj){
         Funcionario fun = rep.getReferenceById(id);
         updateData(fun,obj);
         return rep.save(fun);
     }
-
 
     public void updateData(Funcionario fun, Funcionario obj){
         fun.setCargo(obj.getCargo());
@@ -50,7 +48,4 @@ public class FuncionarioService {
     public void delete(Long id){
       rep.deleteById(id);
     }
-
-
-
 }
