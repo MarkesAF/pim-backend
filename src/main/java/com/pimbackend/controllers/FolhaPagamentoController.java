@@ -24,11 +24,6 @@ public class FolhaPagamentoController {
         List<FolhaPagamentoDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
-    @GetMapping("{id}")
-    public ResponseEntity<FolhaPagamento> findById(@PathVariable Long id){
-        FolhaPagamento obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
-    }
     @PostMapping("{cadastrar}")
     public ResponseEntity<FolhaPagamento>insert(@RequestBody FolhaPagamento fp){
         FolhaPagamento folha = service.insert(fp);
@@ -46,6 +41,4 @@ public class FolhaPagamentoController {
         FolhaPagamento fp = service.update(id,obj);
         return ResponseEntity.ok().body(fp);
     }
-
-
 }
